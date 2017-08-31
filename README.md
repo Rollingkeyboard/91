@@ -3,7 +3,8 @@
 
 # 运行条件
 - python3
-- 安装redis服务器
+- redis server
+- requests
 
 # 忠告
 # 真爱身体， 奉献祖国
