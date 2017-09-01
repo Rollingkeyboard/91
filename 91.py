@@ -42,16 +42,18 @@ def enter(**kwargs):
     	f.write(threading.current_thread().name + " over \n")
 
 if __name__ == "__main__": 
-    t1 = threading.Thread(target=enter, name="a1", kwargs={"start":1683, "end":2439})
-    t2 = threading.Thread(target=enter, name="a2", kwargs={"start":2439, "end":3194})
-    t3 = threading.Thread(target=enter, name="a3", kwargs={"start":3194, "end":3951})
-    
-    t1.start()
-    t2.start()
-    t3.start()
-    
-    t1.join()
-    t2.join()
-    t3.join()
-    
+    thread_list = []
+    for i in range(1, 5):
+        start = (i - 1) * 990 + 1
+        end = i * 990 + 1
+        name = "a" + str(i)
+        t = threading.Thread(target=enter, name=name, kwargs={"start":start,"end":end})
+        thread_list.append(t)
+
+    for t in thread_list:
+        t.start()
+
+    for t in thread_list:
+        t.join()
+		
     print("all thread over")
