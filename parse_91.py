@@ -42,8 +42,8 @@ def enter(**kwargs):
 if __name__ == "__main__":
     thread_list = []
     for t in range(1, 6):
-        start = (t - 1) * 6228 + 1
-        end = t * 6228 + 1
+        start = (t - 1) * 5000 + 1
+        end = t * 5000 + 1
         name = "a" + str(t)
         t = threading.Thread(target=enter, name=name, kwargs={"start":start, "end":end})
         thread_list.append(t)
