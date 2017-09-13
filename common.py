@@ -14,6 +14,7 @@ KEY_SRC = "91_src" # 每个视频源url对于的redis key
 KEY_NONE = "91_none"
 LOG = "f:/log/visit.log"
 TORRENT = "f:/sed/"
+PARSE_LOG = "f:/log/parse.log"
 #----------------------------------------
 import os
 path = "/".join(LOG.split("/")[0:-1])
@@ -23,8 +24,7 @@ if not os.path.exists(TORRENT):
 
 if not os.path.exists(path):
     os.makedirs(path)
-with open(path + "/" + LOG.split("/")[-1], "w") as f:
-    f.write("")
+
 
 '''
   获取访问的主页面

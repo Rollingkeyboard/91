@@ -11,7 +11,7 @@ def parse(url, c):
     src = d("video").find("source").attr("src")
     if src != None:
     	print( threading.current_thread().name,  " insert into redis ", src)
-    	redisutil.add(src, KEY)
+    	redisutil.add(src, common.KEY_SRC)
     	c.lrem(common.KEY, 1, url)  
     else:
     	print(threading.current_thread().name,  src, "解析为None, 插入 redis_error")
@@ -21,12 +21,14 @@ def enter(**kwargs):
     start = kwargs["start"]
     end = kwargs["end"]
     c = redisutil.connect()
-    lst = c.lrange(common.KEY, start, end)
+    lst = c.lrange(common.KEY, int(start), int(end))
 
     for a in lst:
          print(threading.current_thread().name,  " parsing url ", a)
          parse(a, c)
-         time.sleep(random.randint(1, 3))
+         time.sleep(0.1)
+    with open(common.PARSE_LOG, "a") as f:
+        f.write(threading.current_thread().name + " 已经解析完毕.\n")
 
 def start():
     thread_list = []
