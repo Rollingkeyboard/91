@@ -31,3 +31,7 @@ def remove(url, key):
     if exists(url, key):
         r = connect()
         r.lrem(key, 0, url)
+
+def total(key):
+    r = connect()
+    return r.llen(key)
