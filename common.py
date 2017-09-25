@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import requests, re, redisutil, time, random, threading
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter

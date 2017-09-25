@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import requests, re, redisutil, time, random, threading
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
@@ -14,7 +15,7 @@ def parseList(url):
             print(threading.current_thread().name, " redis 已经存在，不再访问 ", a)
 
 '''
-    线程主方法 
+    线程主方法
 '''
 def enter(**kwargs):
     start = kwargs["start"]
@@ -29,7 +30,7 @@ def enter(**kwargs):
             print(threading.current_thread().name, " visiting page ", page, " occurs some errors ", RuntimeError.__with_traceback__)
             redisutil.add(url, "91_error")
             continue
-    # current thread has finished, log it and we can easily know it 
+    # current thread has finished, log it and we can easily know it
     with open(common.LOG, "a") as f:
     	f.write("线程" + threading.current_thread().name + " 已经完成抓取 \n")
 
@@ -44,7 +45,7 @@ def start():
         thread_total = total
     else:
         page_size = total / 5 # start 5 thread to visit
-    
+
     for i in range(1, thread_total + 1):
         start = (i - 1) * page_size + 1
         end = i * page_size + 1
@@ -57,5 +58,5 @@ def start():
 
     for t in thread_list:
         t.join()
-		
+
     print("all thread over")

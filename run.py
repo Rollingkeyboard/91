@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import parse_list, parse_src, time
 
 print("即将启动解析列表程序")

@@ -1,5 +1,6 @@
+# -*- coding: UTF-8 -*-
 import requests, re, redis, redisutil, time, random
-from pyquery import PyQuery as pq 
+from pyquery import PyQuery as pq
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 import threading
@@ -12,7 +13,7 @@ def parse(url, c):
     if src != None:
     	print( threading.current_thread().name,  " insert into redis ", src)
     	redisutil.add(src, common.KEY_SRC)
-    	c.lrem(common.KEY, 1, url)  
+    	c.lrem(common.KEY, 1, url)
     else:
     	print(threading.current_thread().name,  src, "解析为None, 插入 redis_error")
     	redisutil.add(src, common.KEY_NONE)
