@@ -42,6 +42,20 @@ def getNumber():
             continue
     return r
 
+'''
+  获取时长
+'''
+def getTime():
+    r = 0
+    while True:
+        num = input("请输入想获取的时长(分钟):")
+        try:
+            r = int(num)
+            break
+        except:
+            print("抱歉，您输入的不是有效的数字, 请重新输入.")
+            continue
+    return r
 
 '''
    构造随机ip作为请求头访问目标站点
